@@ -98,6 +98,7 @@
 				var StartTime = d.getTime() + 6000;   // We start in 6 seconds;
 				var _state = 0; 											// State of the screen
 				var _moves = 0;												// Saves whether the boats or the screen movess
+				var firstBoat = 0;
 				
 				// Main function which runs every 1000 millis
 				window.setInterval(function() {
@@ -109,11 +110,11 @@
 							break;
 						case 1: // units are racing
 							// Get boat info. For the simulation change the speed;
-							var firstBoat = 0;
-							var MaxLeft = 0;
+							var firstBoat_T = 0;
+							var MaxLeft_T   = 0;
 							for (var i = 0; i < 6; i++) {
 								if (boats[i].Active) {
-									boats[i].Speed = 80 + 10 * Math.sin(d.getTime()) - i * 5;
+									boats[i].Speed = 40 + 2 * Math.sin(d.getTime()) + i * 2;
 									// Animate to new position
 									// Every meter is 5 pixels
 									boats[i].RealPos += 500 / boats[i].Speed;
@@ -121,27 +122,30 @@
 									boats[i].boatItem.animate({left: NewLeft}, 1000, "linear");
 									var leftPos = boats[i].boatItem.css('left');
 									leftPos = leftPos.replace('px', '');
-									console.log(leftPos);
-									if (parseInt(leftPos, 10) > MaxLeft) {
-										maxLeft = parseInt(leftPos, 10);
-										console.log(maxLeft);
-										firstBoat = i;
+									if (parseInt(leftPos, 10) > MaxLeft_T) {
+										MaxLeft_T = parseInt(leftPos, 10);
+										firstBoat_T = i;
 									}
 								}
-								var ContentLeft = -MaxLeft;
-								//console.log(MaxLeft);
-								//console.log(ContentLeft);
-								$('#Content').animate({left: ContentLeft}, 1000, "linear");
-								if (MaxLeft > ScreenWidth - 40) {
-									
-								}
 							}
+							firstBoat = firstBoat_T;
+							
 						break;
 						case 2: // units are finished
 						
 						break;
 					}
 				}, 1000);
+				
+				// Screen refresh function - 50Hz
+				window.setInterval(function() {
+					MaxLeft = boats[firstBoat].boatItem.css('left');
+					MaxLeft = parseInt(MaxLeft.replace('px', ''), 10);
+					if (MaxLeft > ScreenWidth - 300) {
+						var ContentLeft = - MaxLeft + ScreenWidth - 300;
+						$('#Content').css({'left': ContentLeft+'px'});
+					}
+				}, 20);
 				
 				var starting = true;
 				function StartupScreen() {
@@ -164,14 +168,7 @@
 					}
 				}
 				
-				// Screen refresh function - 50Hz
-				window.setInterval(function() {
-					/*for (var i = 0; i < 6; i++) {
-						if (boats[i].Active) {
-							
-						}
-					}*/
-				}, 20);
+				
 				
 				
 				/*
@@ -214,13 +211,17 @@
 		<div id='Content'>
 			<div id='CurrentlyRacing'>
 				<h2>Currently racing</h2>
-				<table>
-					<tr><td>Lane 1: </td><td></td></tr>
-					<tr><td>Lane 2: </td><td></td></tr>
-					<tr><td>Lane 3: </td><td>Laga</td></tr>
-					<tr><td>Lane 4: </td><td>Nereus</td></tr>
-					<tr><td>Lane 5: </td><td></td></tr>
-					<tr><td>Lane 6: </td><td></td></tr>
+				<table id='Stats'>
+					<thead>
+						<tr><td>Lane</td><td>Crew</td><td>Strokerate</td><td>Split</td></tr>
+					</thead>
+					<tbody>
+						<tr><td>Lane 1: </td><td></td><td></td></tr>
+						<tr><td>Lane 2: </td><td></td><td></td></tr>
+						<tr><td>Lane 3: </td><td>Laga</td><td></td></tr>
+						<tr><td>Lane 4: </td><td>Nereus</td><td></td></tr>
+						<tr><td>Lane 5: </td><td></td><td></td></tr>
+						<tr><td>Lane 6: </td><td></td><td></td></tr>
 				</table>
 			</div>
 			<div id='DistanceBlockContainer'>
