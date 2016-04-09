@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Rowcoaches wedstrijd admin</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Astyle.css') }}">
+		<script type=text/javascript
+		  src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+		<script type=text/javascript>
+		  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+		</script>
+	</head>
+	<body>
+		<div id='Background'>
+		</div>
+		<div id='Header'>
+			Rowcoaches wedstrijd admin - {{regatta.Name}}, {{regatta.StartDate}} - {{regatta.EndDate}}
+		</div>
+		<div id='Links'>
+			<p>
+				<a href='http://localhost:5000/admin/'>
+					<img src="{{ url_for('static', filename='Icons/Home.png') }}" /><br />
+					Home
+				</a>
+			</p>
+			<p>
+				<a id='Events'>
+					<img src="{{ url_for('static', filename='Icons/Events.png') }}" /><br />
+					Events
+				</a>
+			</p>
+			<p>
+				<a href='http://localhost:5000/clubs/'>
+					<img src="{{ url_for('static', filename='Icons/Clubs.png') }}" /><br />
+					Clubs
+				</a>
+			</p>
+			<p>
+				<a href='http://localhost:5000/trackers	/'>
+					<img src="{{ url_for('static', filename='Icons/Tracker.png') }}" /><br />
+					Trackers
+				</a>
+			</p>
+		</div>
+		{% block body %}{% endblock %}

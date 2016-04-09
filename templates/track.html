@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block body %}
+		<style>
+			.labels {
+				color: red;
+				background-color: white;
+				font-family: "Lucida Grande", "Arial", sans-serif;
+				font-size: 10px;
+				font-weight: bold;
+				text-align: center;
+				width: 60px;     
+				border: 0px solid black;
+				white-space: nowrap;
+			}
+		</style>
+
+		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script type="text/javascript" src={{ url_for('static', filename='markerwithlabel.js') }}></script>
+		<script>
+			var Lat      = 51.998489;
+			var Long     = 4.5607610;
+			var Vel      = 0;
+			var Dir      = 0;
+			var myCenter = new google.maps.LatLng(Lat,Long);
+			
+			var boats   = []
+			var markers = []
+			/*
+				$.getJSON($SCRIPT_ROOT + '/_get_boats', {}, {function() {
+					
+				});
+			*/
+			for (var i=0; i < 6; i++) {
+				var boat = {
+					Name:   "Laga "+i,
+					Type:   "8+",
+					Speed:  0,
+					Stroke: 0,
+					Long:   0,
+					Lat:    0,
+					};
+				boats.push(boat);
+			}
+			
+			var marker;
+			var map;
+			function initialize() {
+			  var mapProp = {
+			    center:new google.maps.LatLng(51.998489,4.560761),
+			    zoom:14,
+			    mapTypeId:google.maps.MapTypeId.ROADMAP
+			  };
+			  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+			  
+			  for (var i = 0; i < boats.length; i++) {
+				  var marker=new MarkerWithLabel({
+						position:myCenter,
+						dragable: false,
+						optimized: false,
+						map: map,
+						labelContent: boats[i].Name,
+						labelAnchor: new google.maps.Point(0, 0),
+						labelClass: "labels",
+						labelStyle: {opacity: 0.75},
+						title: "test",
+						icon: '/static/Icons/GoogleIcon.png',
+						shadow: 'none',
+		  		});
+		  		boats[i].marker = marker;
+			  }
+			}
+			
+			google.maps.event.addDomListener(window, 'load', initialize);
+			
+			function SetMarker(boat) {
+	      //Set Marker on Map.
+	      var myLatlng = new google.maps.LatLng(boat.Lat, boat.Long);
+	      if (map != undefined) {
+		      boat.marker.setPosition(myLatlng);
+	      }
+      };
+      
+      a = true;
+      $(function() {
+	      /*
+	      // Get tracker data
+	      window.setInterval(function() {
+		      if (a) {
+						$.getJSON($SCRIPT_ROOT + '/_return_trace/0', {}, function(data) {
+							Lat = data.result.Lat[0];
+							Long = data.result.Long[0];
+							console.log("Lat = " + Lat + " & Long = "+Long);
+							Dir = data.result.Direction[0];
+							SetMarker(Lat, Long);
+							if (data.Split != 0)
+								Vel = 500 / data.result.Split;
+							else
+								Vel = 0;
+			      });
+		      }
+	      }, 1000);*/
+	      
+	      
+	      // Example function
+	      var z = 0;
+	      window.setInterval(function() {
+		      i = z%boats.length;
+		      z++;
+		      if (map == undefined)
+			      return;
+			    
+		      var t = Date.now();
+		      t = t % (200000 + i * 100);
+		      var j = 100000 + i * 50;
+		      StartLat      = 51.988489;
+				  StartLong     = 4.5565610;
+				  EndLat        = 52.005489;
+				  EndLong       = 4.5645610;
+				  if (Math.round(t / (200000 + i * 100)) == 1) {
+					  Lat  = StartLat  + (EndLat  - StartLat)  * ((t - j)/j);
+					  Long = StartLong + (EndLong - StartLong) * ((t - j)/j);
+				  } else {
+					  Lat  = StartLat  + (StartLat  - EndLat)  * ((t - j)/j);
+					  Long = StartLong + (StartLong - EndLong) * ((t - j)/j);
+				  }
+				  
+				  boats[i].Lat  = Lat;
+				  boats[i].Long = Long
+				  
+				  SetMarker(boats[i]);
+				  
+	      }, 5);
+    	});
+			
+			
+		</script>
+		<div id='Content'>
+			<!--<div id='Info' style='width: 300px; height: 300px; position: fixed; top: 100px; left: 120px; z-index: 5; background-color: white; color: black; border: 1px solid black;'></div>-->
+			<div id="googleMap" style="width:100%; height:calc(100% + 12px); margin-top: -12px;"></div>
+		</div>
+	</body>
+</html>
+{% endblock %}

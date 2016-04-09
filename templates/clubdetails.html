@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+		<div id='Content'>
+			<table>
+				<thead>
+					<tr>
+						<td>Code</td>
+						<td>Vereniging</td>
+						<td>Naam</td>
+					<tr>
+				</thead>
+				<tbody>
+					{% for crew in club%}
+						<tr onclick="window.location.replace('http://localhost:5000/clubs/{{club['Vern']}}');" style='cursor: pointer;'>
+							<td>{{crew['Ver']}}</td>
+							<td>{{crew['Club']}}</td>
+							<td>{{crew['Name']}}</td>
+						</tr>
+					</a>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+{% endblock %}

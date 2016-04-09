@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+		<div id='Content'>
+			<table>
+				<thead>
+					<tr>
+						<td></td>
+					{% for num in numbers %}
+						<td>{{num.Name}}</td>
+					{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for dev in devisions %}
+						<tr>
+							<td>{{dev.Name}}</td>
+							{% for numb in numbers %}
+								{% if 'Num' in events[dev.Name][numb.Name] %}
+									<td>
+									<a href='http://localhost:5000/event/{{events[dev.Name][numb.Name]['Num']}}'>
+									[{{("0"*(3-(events[dev.Name][numb.Name]['Num']|string|length)))+(events[dev.Name][numb.Name]['Num']|string)}}]
+									</a>
+									</td>
+								{% else %}
+									<td></td>
+								{% endif %}
+							{% endfor %}
+						</tr>
+					{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
+{% endblock %}

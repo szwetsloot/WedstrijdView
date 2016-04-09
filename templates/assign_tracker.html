@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+		<div id='Content'>
+			<table>
+				<thead>
+					<tr>
+						<td>Crew</td>
+						<td>Assign</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for crew in crews%}
+						<tr>
+							<td>{{crew['Name']}}</td>
+							<td>
+								<button onclick="window.location.replace('http://localhost:5000/assign_tracker/{{tracker_id}}/{{crew['Id']}}')">Assign</button>
+							</td>
+						</tr>
+					</a>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+{% endblock %}

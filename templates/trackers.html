@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+		<div id='Content'>
+			<table>
+				<thead>
+					<tr>
+						<td>Tracker</td>
+						<td>Assigned to</td>
+						<td>Assign</td>
+						<td>Clear</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for unit in trackers%}
+						<tr>
+							<td>{{unit['Id']}}</td>
+							<td>
+								{{unit['Crew']}}
+							</td>
+							<td>
+								{% if unit['Crew'] == 'Nobody' %}
+									<button onclick="window.location.replace('http://localhost:5000/assign_tracker/{{unit['Id']}}')">Assign</button>
+								{% else %}
+									<button onclick="window.location.replace('http://localhost:5000/track/{{unit['Id']}}')">Track</button>
+								{% endif %}
+							</td>
+							<td>
+								{% if unit['Crew'] != 'Nobody' %}
+								<button onclick="window.location.replace('http://localhost:5000/clear_tracker/{{unit['Id']}}')">Clear</button>
+								{% endif %}
+							</td>
+						</tr>
+					</a>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+
+<script type='text/javascript'>
+$(function(){
+	$('#
+});
+</script>
+
+{% endblock %}
