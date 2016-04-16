@@ -14,6 +14,7 @@ body {
 	padding: 0px;
 	
 	background-image: url('bg/foto_14719_original.jpg');
+	
 	background-size: cover;
 	background-position: bottom;
 	opacity: 1;
@@ -21,21 +22,19 @@ body {
 
 #Content {
 	position: absolute;
-	top: 20px;
+	top: calc( 50% - 430px );
 	left: 0;
-	height: calc(100%-40px);
+	height: 860px;
 	width: 10000px;
-	
 }
 
 /* LANE INFO*/
 .lane-info{
 	position: fixed;
 	left: 0;
-	top: 61px;
 }
 
-.lane-info .lane{
+.lane-info > .lane{
 	height: 75px;
 	padding: 14px 20px 0 20px;
 }
@@ -50,18 +49,17 @@ body {
 .lane-info .lane .crew{
 	font-weight: bold;
 	color: #fff;
-	border: 2px solid #334263;
-	border-radius: 10px;
 	padding: 0px 20px;
 	margin-left: 35px;
-	margin-top: 3px;
+	margin-top: 4px;
 	line-height: 42px;
 	
-	background: rgb(106,114,132); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(106,114,132,0.7) 0%, rgba(54,74,135,0.7) 50%, rgba(23,42,98,0.7) 51%, rgba(47,70,137,0.7) 100%); 
-	background: -webkit-linear-gradient(top,  rgba(106,114,132,0.7) 0%,rgba(54,74,135,0.7) 50%,rgba(23,42,98,0.7) 51%,rgba(47,70,137,0.7) 100%); 
-	background: linear-gradient(to bottom,  rgba(106,114,132,0.7) 0%,rgba(54,74,135,0.7) 50%,rgba(23,42,98,0.7) 51%,rgba(47,70,137,0.7) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a7284', endColorstr='#2f4689',GradientType=0 ); 
+	-ms-transform: skew(-10deg); 
+    -webkit-transform: skew(-10deg); 
+    transform: skew(-10deg);
+	
+	background: #416390;
+	border-radius: 4px; 
 
 }
 
@@ -78,17 +76,17 @@ body {
     float: right;
 }
 
-.rowing-course .lane{
+.rowing-course > .lane{
 	height: 89px;
-	width: 100%;
+	width: 100%;	
 }
 
-.rowing-course .lane:nth-of-type(odd){
-	background: #5588B3;
+.rowing-course > .lane:nth-of-type(odd){
+	background: rgba(85, 136, 179, 0.9);
 }
 
-.rowing-course .lane:nth-of-type(even){
-	background: #A3C1DB;
+.rowing-course > .lane:nth-of-type(even){
+	background: rgba(163, 193, 219, 0.9);
 }
 
 .rowing-course .boat {
@@ -122,20 +120,23 @@ body {
 
 #CurrentlyRacing {
 	position: fixed;
-	bottom: 20px;
+	margin-top: 565px;
 	width: 750px;
 	left: calc( 50% - 375px );
 	font-size: 20px;
+	z-index: 2;
 }
 
 #CurrentlyRacing table{
-	border-collapse: collapse;
 	color: #fff;
 }
 
 #CurrentlyRacing tr{
-	border-radius: 3px;
-	border: 2px solid #163B68;
+	border-radius: 10px;
+	
+	-ms-transform: skew(-10deg); 
+    -webkit-transform: skew(-10deg); 
+    transform: skew(-10deg);
 }
 
 #CurrentlyRacing tr:nth-child(even){
@@ -150,9 +151,18 @@ body {
 	padding: 8px 32px;
 }
 
+#CurrentlyRacing td:first-child,#CurrentlyRacing th:first-child{
+	border-radius: 4px 0 0 4px;
+}
+
+#CurrentlyRacing td:last-child,#CurrentlyRacing th:last-child{
+	border-radius: 0 4px 4px 0;
+}
+
 #CurrentlyRacing th{
 	text-align: left;
 	padding: 8px 16px;
+	background: rgba(11,32,66,0.8);
 }
 
 #CurrentlyRacing th.lane{
@@ -184,6 +194,7 @@ body {
 	width: 80px;
 	padding-top: 2px;
 	background: #fff;
+	z-index: 2;
 }
 
 .DistanceBlock p{

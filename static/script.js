@@ -31,7 +31,8 @@ $(function() {
 			Active : 0, // Rowing
 			RacePos : 0, // Distance from start
 			RealPos : 0, // Actual distance from start
-			boatItem : undefined
+			boatItem : undefined,
+			boatLabel : undefined
 		};
 		boats.push(boat);
 	}
@@ -56,11 +57,14 @@ $(function() {
 	for (var i = 0; i < 6; i++) {
 		var lane = i + 1;
 		boats[i].boatItem = $('#lane-' + lane).find('.boat');
+		boats[i].boatLabel = $('.lane-info .lane').eq(i).find('.crew');
 		
 		boats[i].boatItem.css('left', x);
 		// hide unactive boats
-		if (!boats[i].Active)
+		if (!boats[i].Active){
 			boats[i].boatItem.hide();
+			boats[i].boatLabel.hide();
+		}
 		//y = y + YSpacing;
 	}
 
