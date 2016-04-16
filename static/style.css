@@ -226,19 +226,18 @@ body {
 #Message {
 	position: fixed;
 	display: none;
-	left: 678px;
+	left: 50%;
 	top: 50%;
-	margin: -80px -184px;
+	margin: -80px -200px;
 	height: 115px;
 	width: 400px;
-	border: outset 8px gray;
 	border-radius: 80px;
 	background: inherit;
 	background-color: Black;
 	text-align: center;
 	vertical-align: middle;
 	z-index: 1000;
-	color: red;
+	color: #fff;
 	padding-top: 45px;
 	font-size: 48px;
 }
