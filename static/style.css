@@ -13,57 +13,199 @@ body {
 	margin: 0px;
 	padding: 0px;
 	
-	background-image: url(bg4.jpg);
+	background-image: url('bg/foto_14719_original.jpg');
 	background-size: cover;
-	opacity: 0.25;
+	background-position: bottom;
+	opacity: 1;
 }
-.Boat {
-	position: absolute;
-	width: 160px;
-	height: 40px;
-	background-image: url('boat.png');
-	background-size: cover;
-}
-.Bouy {
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	background-image: url('bouy.png');
-	background-size: cover;
-	border-radius: 10px;
-}
+
 #Content {
 	position: absolute;
 	top: 20px;
+	left: 0;
 	height: calc(100%-40px);
 	width: 10000px;
+	
 }
-#CurrentlyRacing {
+
+/* LANE INFO*/
+.lane-info{
+	position: fixed;
+	left: 0;
+	top: 61px;
+}
+
+.lane-info .lane{
+	height: 75px;
+	padding: 14px 20px 0 20px;
+}
+
+.lane-info .lane h1{
+	float:left;
+	font-size: 24px;
+	color: rgba(255,255,255,0.8);
+	
+}
+
+.lane-info .lane .crew{
+	font-weight: bold;
+	color: #fff;
+	border: 2px solid #334263;
+	border-radius: 10px;
+	padding: 0px 20px;
+	margin-left: 35px;
+	margin-top: 3px;
+	line-height: 42px;
+	
+	background: rgb(106,114,132); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(106,114,132,0.7) 0%, rgba(54,74,135,0.7) 50%, rgba(23,42,98,0.7) 51%, rgba(47,70,137,0.7) 100%); 
+	background: -webkit-linear-gradient(top,  rgba(106,114,132,0.7) 0%,rgba(54,74,135,0.7) 50%,rgba(23,42,98,0.7) 51%,rgba(47,70,137,0.7) 100%); 
+	background: linear-gradient(to bottom,  rgba(106,114,132,0.7) 0%,rgba(54,74,135,0.7) 50%,rgba(23,42,98,0.7) 51%,rgba(47,70,137,0.7) 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a7284', endColorstr='#2f4689',GradientType=0 ); 
+
+}
+
+.lane-info .lane .crew p{
+	display: inline-block;
+    margin: 4px 15px 4px 4px;
+}
+
+.lane-info .lane .crew img{
+	height: auto;
+    width: 70px;
+    margin-top: 12px;
+    display: inline-block;
+    float: right;
+}
+
+.rowing-course .lane{
+	height: 89px;
+	width: 100%;
+}
+
+.rowing-course .lane:nth-of-type(odd){
+	background: #5588B3;
+}
+
+.rowing-course .lane:nth-of-type(even){
+	background: #A3C1DB;
+}
+
+.rowing-course .boat {
 	position: absolute;
-	top: 0px;
-	left: 20px;
+	width: 160px;
+	height: 40px;
+	margin: 23px 0 0 250px;
+	background-image: url('boat.png');
+	background-size: cover;
+}
+
+.rowing-course .bouys{
+    position: absolute;
+	border-bottom: 2px solid #FAC000;
+    height: 10px;
+    margin-top: -10px;
+    width: 100%;
+}
+
+.rowing-course .bouy {
+	display: inline-block;
+	position:relative;
+	margin-left: 60px;
+	margin-top: -9px;
+	width: 10px;
+	height: 10px;
+	background: #FFE207;
+	background: #FAC000;
+	border-radius: 10px;
+}
+
+#CurrentlyRacing {
+	position: fixed;
+	bottom: 20px;
+	width: 750px;
+	left: calc( 50% - 375px );
 	font-size: 20px;
 }
-#CurrentlyRacing td {
-	min-width: 100px;
+
+#CurrentlyRacing table{
+	border-collapse: collapse;
+	color: #fff;
 }
+
+#CurrentlyRacing tr{
+	border-radius: 3px;
+	border: 2px solid #163B68;
+}
+
+#CurrentlyRacing tr:nth-child(even){
+	background: rgba(22,59,104,0.8);
+}
+
+#CurrentlyRacing tr:nth-child(odd){
+	background: rgba(24,44,81,0.8);
+}
+
+#CurrentlyRacing td {
+	padding: 8px 32px;
+}
+
+#CurrentlyRacing th{
+	text-align: left;
+	padding: 8px 16px;
+}
+
+#CurrentlyRacing th.lane{
+	
+}
+
+#CurrentlyRacing th.crew{
+	width: 300px;
+}
+
+#CurrentlyRacing th.rate{
+	
+}
+
+#CurrentlyRacing th.split{
+	
+}
+
 #DistanceBlockContainer {
-	position: absolute;
-	top: 300px;
+	position: relative;
 	height: 40px;
 	width: 100%;
-	border-top: 2px solid gray;
-	border-bottom: 2px solid gray;
+	padding-left: 250px;
+	border-top: 0px solid gray;
 }
 .DistanceBlock {
-	position: absolute;
-	top: 5px;
+	display:inline-block;
 	height: 28px;
 	width: 80px;
+	padding-top: 2px;
+	background: #fff;
+}
+
+.DistanceBlock p{
+	color: #999;
 	font-size: 20px;
 	text-align: center;
-	padding-top: 2px;
+	margin: 0;
 }
+
+.DistanceBlock:nth-child(5n+1):before{
+	content: '';
+    position: absolute;
+    height: 531px;
+    margin-left: 40px;
+    margin-top: 40px;
+    border-right: 3px dashed #fff;
+}
+
+.club-flag{
+	height: 20px;
+}
+
 #Header {
 	position: absolute;
 	left: 20px;
