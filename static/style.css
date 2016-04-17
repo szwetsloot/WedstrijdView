@@ -58,22 +58,26 @@ body {
     -webkit-transform: skew(-10deg); 
     transform: skew(-10deg);
 	
-	background: #416390;
+	background: #61708A;
 	border-radius: 4px; 
 
 }
 
 .lane-info .lane .crew p{
 	display: inline-block;
-    margin: 4px 15px 4px 4px;
+    margin: 4px 15px 4px 15px;
 }
 
 .lane-info .lane .crew img{
-	height: auto;
-    width: 70px;
+	height: 25px;
+    width: auto;
     margin-top: 12px;
     display: inline-block;
-    float: right;
+   	float: left;
+    
+    -ms-transform: skew(10deg); 
+    -webkit-transform: skew(10deg); 
+    transform: skew(10deg);
 }
 
 .rowing-course > .lane{
